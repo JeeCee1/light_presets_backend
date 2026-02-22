@@ -1,0 +1,156 @@
+get_presets:
+  name: Get Presets
+  description: Returns the full category and preset tree.
+
+applyColor:
+  name: Apply Color
+  description: Applies a preset to one or more light entities.
+  fields:
+    preset_id:
+      name: Preset ID
+      description: The ID of the preset to apply.
+      required: true
+      selector:
+        text:
+    entity_id:
+      name: Entity
+      description: The light entity or entities to apply the preset to.
+      required: true
+      selector:
+        entity:
+          domain: light
+          multiple: true
+
+save_category:
+  name: Save Category
+  description: Creates or updates a category. Omit category_id to create a new one.
+  fields:
+    category_id:
+      name: Category ID
+      description: The ID of the category to update. Omit to create.
+      required: false
+      selector:
+        text:
+    name:
+      name: Name
+      description: The display name of the category.
+      required: true
+      selector:
+        text:
+    order:
+      name: Order
+      description: Sort order of the category.
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 999
+
+delete_category:
+  name: Delete Category
+  description: Deletes a category and all its presets.
+  fields:
+    category_id:
+      name: Category ID
+      description: The ID of the category to delete.
+      required: true
+      selector:
+        text:
+
+save_preset:
+  name: Save Preset
+  description: Creates or updates a preset. Omit preset_id to create a new one.
+  fields:
+    category_id:
+      name: Category ID
+      description: The ID of the category to save the preset in.
+      required: true
+      selector:
+        text:
+    preset_id:
+      name: Preset ID
+      description: The ID of the preset to update. Omit to create.
+      required: false
+      selector:
+        text:
+    name:
+      name: Name
+      description: The display name of the preset.
+      required: true
+      selector:
+        text:
+    type:
+      name: Type
+      description: "Preset type: color_temp_kelvin, rgb, hs, or brightness_only."
+      required: true
+      selector:
+        select:
+          options:
+            - color_temp_kelvin
+            - rgb
+            - hs
+            - brightness_only
+    brightness_pct:
+      name: Brightness (%)
+      description: Brightness percentage (0-100).
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: "%"
+    transition:
+      name: Transition
+      description: Transition time in seconds.
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 300
+          unit_of_measurement: s
+    color_temp_kelvin:
+      name: Color Temperature (K)
+      description: Color temperature in Kelvin. Used when type is color_temp_kelvin.
+      required: false
+      selector:
+        color_temp:
+          unit: kelvin
+          min: 1000
+          max: 10000
+    rgb_color:
+      name: RGB Color
+      description: RGB color as [r, g, b]. Used when type is rgb.
+      required: false
+      selector:
+        object:
+    hs_color:
+      name: HS Color
+      description: Hue/Saturation as [hue, saturation]. Used when type is hs.
+      required: false
+      selector:
+        object:
+    order:
+      name: Order
+      description: Sort order within the category.
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 999
+
+delete_preset:
+  name: Delete Preset
+  description: Deletes a preset from a category.
+  fields:
+    category_id:
+      name: Category ID
+      description: The ID of the category containing the preset.
+      required: true
+      selector:
+        text:
+    preset_id:
+      name: Preset ID
+      description: The ID of the preset to delete.
+      required: true
+      selector:
+        text:

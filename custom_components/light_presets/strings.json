@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Light Presets",
+        "description": "Set up Light Presets to manage reusable light settings across your dashboard. All configuration is done through the Light Presets card."
+      }
+    },
+    "abort": {
+      "already_configured": "Light Presets is already configured."
+    }
+  }
+}
